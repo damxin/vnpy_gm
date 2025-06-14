@@ -16,6 +16,7 @@
 用于对接掘金量化终端开发的掘金数据服务。
 
 ## 安装
+这种安装方式会由于numpy的版本的问题导致和vnpy4的numpy的版本冲突使得无法安装。
 
 安装环境推荐基于4.0.0版本以上的【[**VeighNa Studio**](https://www.vnpy.com)】。
 
@@ -30,6 +31,18 @@ pip install vnpy_gm
 ```
 pip install .
 ```
+## 另类安装
+init.py调整为
+import importlib_metadata
+from .gm_datafeed import GmDatafeed as Datafeed
+
+
+try:
+    __version__ = importlib_metadata.version("vnpy_gm")
+except importlib_metadata.PackageNotFoundError:
+    __version__ = "dev"
+在.venv/Lib/sites-packages下面创建
+_init_.py和gm_datafeed.py内容就是上面的内容。
 
 ## 使用
 
